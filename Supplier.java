@@ -10,6 +10,9 @@ public class Supplier implements Serializable {
     public int storageCost(){
         return 1;
     }
+    public int maxCapacity(){
+        return 1;
+    }
     public int inventory(){
         return 1;
     }
