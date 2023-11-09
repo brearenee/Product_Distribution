@@ -152,6 +152,7 @@ public class Supplier implements java.io.Serializable {
 
     /**
      * Returns a hash code value for this supplier.
+     * if something is equal, the hashcode also has to be equal. aka why we also have to override hashcode
      * @return hash code value for this supplier
      */
     @Override
