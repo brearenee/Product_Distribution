@@ -40,3 +40,16 @@ public class Allocator {
 
 //THE SOLUTION IS A COLLECTION OF TRANSPORTERS
 //THE INPUT IS SUPPLIERS AND TRANSPORTERS. 
+
+
+//Collectionsin Java. The collections heirarchy is an interface. Some of the implementing class inclue arraylist, hashset, etc e
+//so weve been using a class that implements a collection. 
+//so to make our product work with anbodys collection, wanna yse a hashset, arraylist, stack, whatever - our code will work for
+//whatever collection someone decides to put in. because all we are guaranteeing is that add, addall, clear, contains containsall methods 
+//etc exist. 
+//how are we going to take this data and represent in a way that helps us solve the problem? adjacency list, etc etc? and then our algorithm 
+//will operate on that representation. 
+//and if we decide this is a flow, well its still a directional graph with cycles in it.  
+
+
+
