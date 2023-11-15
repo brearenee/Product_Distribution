@@ -13,7 +13,7 @@ import java.util.HashSet;
  * @author Dr. Jody Paul
  * @version 20231107a
  */
-public class Allocator {
+public class Allocator extends Object  {
 
     /**
      * Allocate units to transporters to satisfy distributor
