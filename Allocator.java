@@ -9,6 +9,7 @@ import java.util.HashSet;
  * For example, one goal may be achieving the least expensive allocation;
  * whereas another goal may be achieving the most robust allocation
  * by accounting for potential underestimates of demand.
+ * if either or both aparmeters ar enull, return a collection of size 0.
  *
  * @author Dr. Jody Paul
  * @version 20231107a
@@ -19,9 +20,9 @@ public class Allocator extends Object  {
      * Allocate units to transporters to satisfy distributor
      * demands at the lowest transportation cost.
      */
-    public static Collection<Transporter> allocateForLowestTransporterCost(
-                                              Collection<Supplier> suppliers,
-                                              Collection<Transporter> transporters) {
+    public static Collection<Transporter> allocateForLowestTransporterCost( Collection<Supplier> suppliers,
+                                                                     Collection<Transporter> transporters) {
+                                                                        //if either of the parameters are null, we return 
         Collection<Transporter> allocation = new HashSet<Transporter>();
 
         allocation = transporters; // Dummy code; replace with allocation code.
@@ -31,7 +32,40 @@ public class Allocator extends Object  {
 
     /** Hide constructor of this utility class. */
     private Allocator() { }
-}
+
+
+
+    public static int totalDemand(Collection<Supplier> suppliers){
+        int sum = 0;
+        for (Supplier s : suppliers){
+            //how do we get elements from a collection? can we index them?  theres an iterator method in a collection.   Steam method might 
+            //also work - but theres nothing thats an indexed get because not all collections are indexed. 
+            //so how to create an iterator?  for each loop :-) ]
+            sum += s.demand();
+        }
+        return sum;
+    }
+
+    public static int totalAmountShipped (Collection<Transporter> transporters) {
+        int sum = 0;
+        for( Transporter t : transporters){
+            sum += t.allocation();
+        }
+            return sum;
+        }
+    }
+
+    public static int totalTransporterCost(Collection<Transporter> transporters) {
+        //what is total transportation cost?  whats the transprotation cost of each transporteR?
+        //cost per unit * number of units transporting. 
+        //
+
+        int sum = 0; 
+        for (Transporter t: transporters){
+            sum += t.allocation() * t.costPerUnit();
+        }
+        return sum;
+    }
 
 
 // come up with ana location that is least cost and satisfies the demands. 

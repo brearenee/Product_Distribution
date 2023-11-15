@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.HashSet;//concrete version of collector
+import java.util.List;//at some point i'm gonna need a list lol 
 /**
  * Test scaffolding for class Allocator.
  * @author  Dr. Jody Paul
@@ -13,19 +13,23 @@ import java.util.List;
  */
 public class AllocatorTest {
     // Data for tests.
-    public Supplier s0, s1, s2;
-    public Transporter tM, tA, tB, tC;
-    public Collection sColl;
-    public Collection tColl;
+    public Supplier s0, s1, s2; //s0 is denmark
+    public Transporter tM, tA, tB, tC; 
+    public Collection<Supplier> sColl;//should still have generic 
+    public Collection<Supplier> tColl;//this is all what i want to be available for any test that i write. thats why its up here. 
+    //they didnt need to be public but sometimes during debugging you wanna be able to see stuff. 
 
     /**
      * Constructor generates and saves serialized test data.
      */
+    //constructor envoked  when running unit tests. 
     public AllocatorTest() {
         // Generate test data.
+       //this is all just dummy stuff, i think.  0- = storage cost.  
         Supplier manufacturer = new Supplier("Manufacturer", 0, 0, 400, 999);
         Supplier dist1 = new Supplier("Distributor 1", 3, 55, 0, 147);
         Supplier dist2 = new Supplier("Distributor 2", 5, 40, 0, 157);
+        //no allocations on these yet because we havent run our program. 
         Transporter manuShip = new Transporter("Shipping",
                                               manufacturer,
                                               dist1,
@@ -50,7 +54,9 @@ public class AllocatorTest {
                                               25,
                                               20,
                                               0);
-        
+        //envoke serialization. 
+        //i want to know what data is being used and i may want to restore it in some other places. and its alwso a way of 
+        //reinitalizing things if i need it.
         try {
             manufacturer.save("sup0.ser");
             dist1.save("sup1.ser");
@@ -70,6 +76,7 @@ public class AllocatorTest {
      * serialized suppliers and transporters.
      * Called before every test case method.
      */
+    //since the tests can mess with the data, i want fresh data at the start of every test. 
     @BeforeEach
     public void setUp() {
         s0 = new Supplier(); // Manufacturer
