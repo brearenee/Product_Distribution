@@ -64,8 +64,26 @@ public class Allocator extends Object  {
         for (Transporter t: transporters){
             sum += t.allocation() * t.costPerUnit();
         }
-        return sum;
+        //return sum;
+
+
+        //stream form
+        //doesnt matter how we write it, steam and loop do the same thing basically for this class. 
+        return transporters.stream()
+                .map(t -> t.allocation() * t.costPerUnit()).reduce(0, Integer::sum);
     }
+    public static String displayAllocations(Collection<Transporter> transporters){
+        //its up to the designer to deside how to do this. 
+        //name: allocation, cost per unit.  $  = string display :-) 
+        String str = "";
+        for (Transporter t : transporters){
+            //we want to concatinate onto str. 
+            str += String.format("%s: %s %s\n", t.name(), t.allocation(), t.costPerUnit())
+        }
+        return str;
+
+    }
+}
 
 
 // come up with ana location that is least cost and satisfies the demands. 
